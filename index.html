@@ -7,14 +7,20 @@ title: Forrest Wyatt
     {% if forloop.first %}
         <a href="{{ post.url }}"><h1>{{ post.title }}</h1></a>
         {{ post.content }}
-    <h2>Recent posts:</h2>
+    {% if forloop.length > 1 %}
+    <h2>Other recent posts:</h2>
     <p>
         <ul class="archives">
+    {% endif %}
     {% else %}
             <li {% cycle '', 'class="even"' %}><span>{{ post.date | date_to_string }}</span> &mdash; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endif %}
-{% endfor %}
+    {% if forloop.length > 1 %}
+    {% if forloop.last %}
         </ul>
     </p>
-<p>For more see the <a href="/archives.html">archives</a>.</p>
+    <p>For more see the <a href="/archives.html">archives</a>.</p>
+    {% endif %}
+    {% endif %}
+{% endfor %}
 
