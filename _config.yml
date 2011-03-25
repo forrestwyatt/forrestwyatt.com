@@ -1,0 +1,3 @@
+pygments: true
+permalinks: /:year/:month/:title.html
+
