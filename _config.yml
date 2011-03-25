@@ -1,4 +1,4 @@
-auto: true
 pygments: true
 permalinks: /:year/:month/:title.html
+exclude: tasks
 
