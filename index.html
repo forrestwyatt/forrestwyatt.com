@@ -3,24 +3,24 @@ layout: default
 title: Forrest Wyatt
 ---
 
-{% for post in site.posts limit:6 %}
+{% for post in site.posts %}
     {% if forloop.first %}
         <a href="{{ post.url }}"><h1>{{ post.title }}</h1></a>
         {{ post.content }}
-    {% if forloop.length > 1 %}
-    <h2>Other recent posts:</h2>
-    <p>
-        <ul class="archives">
+        {% if forloop.length > 1 %}
+        <h2>Other recent posts:</h2>
+        <p>
+            <ul class="archives">
+        {% endif %}
+    {% elsif forloop.index <= 6 %}
+        <li {% cycle '', 'class="even"' %}><span>{{ post.date | date_to_string }}</span> &mdash; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endif %}
-    {% else %}
-            <li {% cycle '', 'class="even"' %}><span>{{ post.date | date_to_string }}</span> &mdash; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endif %}
-    {% if forloop.length > 1 %}
-    {% if forloop.last %}
-        </ul>
-    </p>
-    <p>For more see the <a href="/archives.html">archives</a>.</p>
-    {% endif %}
+    {% if forloop.length > 6 %}
+        {% if forloop.last %}
+            </ul>
+        </p>
+        <p>For more see the <a href="/archives.html">archives</a>.</p>
+        {% endif %}
     {% endif %}
 {% endfor %}
 
